@@ -21,3 +21,9 @@
 - Home page
 - Update addresses
 - Colors: {Black. Lime Green. Light Grey}
+
+## Technology
+
+- Database: MongoDB via Atlas
+- Application: React
+- Hosting: <None>
