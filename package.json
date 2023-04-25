@@ -1,0 +1,23 @@
+{
+  "name": "dev-this-address-book",
+  "version": "1.0.0",
+  "description": "## Client Ask",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JEub/dev-this-address-book.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JEub/dev-this-address-book/issues"
+  },
+  "homepage": "https://github.com/JEub/dev-this-address-book#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
