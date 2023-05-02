@@ -87,3 +87,5 @@ const deleteCustomer = async customerId => {
         return result != null && result.deletedCount === 1;
     }
 }
+
+module.exports = {getCustomers, getCustomer, createCustomer, updateCustomer, deleteCustomer};

@@ -1,0 +1,1 @@
+const {updateCustomer} = require('../../backend/db/dao.js');

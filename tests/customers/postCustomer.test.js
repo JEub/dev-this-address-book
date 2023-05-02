@@ -1,0 +1,1 @@
+const {createCustomer} = require('../../backend/db/dao.js');

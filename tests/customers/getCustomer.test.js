@@ -1,0 +1,1 @@
+const {getCustomer, getCustomers} = require('../../backend/db/dao.js');
