@@ -28,7 +28,7 @@ const getCustomers = async (count, sort_desc) => {
             customers.push(await cursor.next());
         }
         console.log("Found %d customers", customers.length);
-    } catch (error) {
+    } catch (e) {
         console.log("Failed to find customers because of %d", e);
     } finally {
         return customers;
@@ -41,7 +41,7 @@ const getCustomer = async customerId => {
         console.log("Finding customer: %d", customerId);
         result = await client.findOne({ _id: customerId }); 
         console.log("Success finding customer: %d", customerId);
-    } catch (error) {
+    } catch (e) {
         console.log("Failed to find customer: %d because of %d", customerId, e);
     } finally {
         return result != null ? result : {};
@@ -68,7 +68,7 @@ const updateCustomer = async (customerId, update) => {
         console.log("Updating customerId: %d to customer: %d", customerId, update);
         result = await client.updateOne({ _id: customerId }, update, { upsert: true }); 
         console.log(`${result.matchedCount} document(s) found, ${result.modifiedCount} updated, ${result.upsertedCount} upserted`);
-    } catch (error) {
+    } catch (e) {
         console.log("Failed to update customer: %d because of %d", customerId, e);
     } finally {
         return result != null && (result.modifiedCount === 1 || result.upsertedCount === 1);
