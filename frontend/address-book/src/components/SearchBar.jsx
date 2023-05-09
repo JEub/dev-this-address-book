@@ -1,5 +1,4 @@
 // import { useState } from "react";
-import button from'./Nav';
 import {useRecoilState, useSetRecoilState} from "recoil";
 import { searchInputState,currentSearchTerm } from '../states';
 const SearchBar = () => {
