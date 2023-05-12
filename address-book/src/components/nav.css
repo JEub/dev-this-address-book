@@ -16,19 +16,19 @@
     align-items:left;
     margin-top: 10px
 }
+
 #button {
     width: 200px;
     border: 3px solid limegreen;
     border-radius: 50px;
     color: black
-};
-#sbutton {
+}
+.searchbutton {
     width: 80px;
     border: 3px solid limegreen;
     border-radius: 50px;
-    color: black
-};
-#sbox {
+}
+.sinput {
     border:2px solid limegreen;
     color: black
-};
+}

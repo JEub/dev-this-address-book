@@ -1,33 +1,9 @@
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
+import "./Nav.css";
 import SearchBar from "./SearchBar";
-import API from "../utils/API";
+// import API from "../utils/API";
 const Nav = (props) => {
     const { userInfo } = props;
-    // const wrap = {
-    //     border: "3px solid black",
-    //     padding:"10px"
-    // }
-    // const container = {
-    //     width: "100%",
-    //     display: "flex",
-    //     flexDirection: "row",
-    //     flexWrap: "wrap",
-    //     justifyContent: "space-between",
-	// 	marginBottom:"5px",
-    // };
-    // const unit = {
-    //     width: "50%",
-    //     display: "flex",
-    //     alignItems:"left",
-    //     marginTop: "10px"
-    // };
-    // const button = {
-    //     width: "200px",
-    //     border: "3px solid limegreen",
-    //     borderRadius: "50px",
-    //     color: "black"
-    // };
-
     return (
         <div id="wrap">
             <div id="container">
@@ -35,10 +11,10 @@ const Nav = (props) => {
                 {/* paths needed for to */}
                 {/* <Link to="/api/newCustomer">
                 Add Customer
-            </Link>
-            <Link to="/api/logout">
+                </Link>
+                <Link to="/api/logout">
                 Logout
-            </Link> */}
+                </Link> */}
                 <button id="button">
                     <a href="/">Add Customer</a>
                 </button>
