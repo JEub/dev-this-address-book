@@ -10,7 +10,7 @@
 - Folder structure: Components folder, inside of which there is a folder for each component that would hold the jsx file and css (if we are using CSS - option to use tailwind?)
 - Option to use Nextjs 
 
-To run frontend fromn the terminal:
+To run frontend from the terminal:
 cd frontend
 cd addressbook
 npm run dev
