@@ -1,4 +1,3 @@
-// import { useState } from "react";
 import {useRecoilState, useSetRecoilState} from "recoil";
 import { searchInputState,currentSearchTerm } from '../states';
 const SearchBar = () => {
@@ -12,16 +11,6 @@ const SearchBar = () => {
         setCurrentSearchValue(searchInput);
         setSearchInput("");
     };
-    // const button = {
-    //     width: "80px",
-    //     border: "3px solid limegreen",
-    //     borderRadius: "50px",
-    //     color: "black"
-    // };
-    // const box={
-    //     border:"2px solid limegreen",
-    //     color: "black"
-    // };
     return (
         <div>
             <form onSubmit={handleSubmit}>
