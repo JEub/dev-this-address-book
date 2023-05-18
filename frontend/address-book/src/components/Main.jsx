@@ -1,4 +1,4 @@
-import {currentSearchTerm} from "../states";
+import {currentSearchTerm} from "../reactstates";
 import {useRecoilValue} from "recoil";
 
 

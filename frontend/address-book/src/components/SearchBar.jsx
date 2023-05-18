@@ -1,5 +1,5 @@
 import {useRecoilState, useSetRecoilState} from "recoil";
-import { searchInputState,currentSearchTerm } from '../states';
+import { searchInputState,currentSearchTerm } from '../reactstates';
 const SearchBar = () => {
 
     const [searchInput, setSearchInput]= useRecoilState(searchInputState);
