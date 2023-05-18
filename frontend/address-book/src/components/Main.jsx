@@ -3,7 +3,7 @@ import {useRecoilValue} from "recoil";
 
 
 const Main = (props)=>{
-    // will need to add keys here for firstName, lastName, address
+    {/* When displaying the state do we want to lift state through props or create an atom through recoil */}
     const currentState = useRecoilValue(currentSearchTerm);
     return (
         <>
