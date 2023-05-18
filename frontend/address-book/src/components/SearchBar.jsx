@@ -15,13 +15,13 @@ const SearchBar = (props) => {
         <div>
             <form onSubmit={handleSubmit}>
                 <input
-                    type="text"
-                    placeholder="What are you looking for?"
-                    onChange={(e)=>{setSearchInput(e.target.value)}}
-                    value={searchInput}
-                    id="sinput"
+                    type = "text"
+                    placeholder = "What are you looking for?"
+                    onChange = {(e) => {setSearchInput(e.target.value)}}
+                    value = {searchInput}
+                    id = "sinput"
                 ></input>
-                <button type="submit" id="searchb">Search</button>
+                <button type = "submit" id = "searchb">Search</button>
             </form>
             <div>
                 {/* need to lift userInfo state from UserModal via props */}
