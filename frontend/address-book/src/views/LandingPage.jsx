@@ -6,15 +6,19 @@ import UserLogin from "../components/Login";
 
 const LandingPage = (props) => {
     const {userInfo} = props;
+    const [loginState] = useState({
+      username:"",
+      password:""
+    })
     const [showModal, setShowModal] = useState(false);
     const [showLogin, setShowLogin] = useState(true);
 
   return (
     <>
-      <div>LandingPage</div>
+      <div>Landing Page</div>
       <Nav userInfo={userInfo}/>
       {/* import atom into main container to read */}
-      <Main/>
+      <Main loginState={loginState}/>
       <UserLogin
         showLogin={showLogin}
         setShowLogin={setShowLogin}/>
