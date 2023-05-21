@@ -1,0 +1,41 @@
+.login {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.loginContent {
+    width: 70%;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.loginHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.loginContent form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: space-between;
+}
+
+input, select {
+    flex-grow: 1;
+}
+
+.submitButton {
+    width: 100%;
+    margin-top: 15%;
+}
