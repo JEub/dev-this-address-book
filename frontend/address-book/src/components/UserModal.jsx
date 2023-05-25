@@ -1,8 +1,9 @@
 import { useState } from "react";
+import {useRecoilState, useSetRecoilState} from "recoil";
 
 import '../styles/UserModal.css';
 
-const UserModal = ({showModal, setShowModal}) => {
+const UserModal = ({showModal, setShowModal, modalData}) => {
 
     const [userInfo, setUserInfo] = useState({
         firstName: "",
@@ -12,6 +13,7 @@ const UserModal = ({showModal, setShowModal}) => {
         city: "",
         state: ""
     });
+
     
     const handleChange = (e) => {
         setUserInfo({

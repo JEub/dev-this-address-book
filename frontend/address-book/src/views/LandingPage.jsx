@@ -1,11 +1,13 @@
 import { useState } from "react";
+import {useRecoilState, useSetRecoilState} from "recoil";
 import Nav from "../components/Nav";
 import Main from "../components/Main";
 import UserModal from "../components/UserModal";
+import { modalData, modalState } from "../states";
 
 const LandingPage = (props) => {
     const {userInfo} = props;
-    const [showModal, setShowModal] = useState(false);
+    const [showModal, setShowModal] = useRecoilState(modalState);
 
   return (
     <>
@@ -15,8 +17,9 @@ const LandingPage = (props) => {
       <Main/>
       <UserModal 
         showModal={showModal}
-        setShowModal={setShowModal}/>
-      <button onClick={() => {setShowModal(true)}}>Open</button>
+        setShowModal={setShowModal}
+        modalData={modalData}/>
+      {/* <button onClick={() => {setShowModal(true)}}>Open</button> */}
     </>
   );
 };
