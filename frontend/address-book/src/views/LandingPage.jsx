@@ -12,11 +12,11 @@ const LandingPage = (props) => {
       <div>LandingPage</div>
       <Nav userInfo={userInfo}/>
       {/* import atom into main container to read */}
-      <Main/>
+      <Main userInfo = {userInfo}/>
       <UserModal 
-        showModal={showModal}
-        setShowModal={setShowModal}/>
-      <button onClick={() => {setShowModal(true)}}>Open</button>
+        showModal = {showModal}
+        setShowModal = {setShowModal}/>
+      <button onClick = {() => {setShowModal(true)}}>Open</button>
     </>
   );
 };

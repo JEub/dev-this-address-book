@@ -5,9 +5,9 @@ const Nav = (props) => {
     const { userInfo } = props;
 
     return (
-        <div id="wrap">
-            <div id="container">
-                <h3 className="unit">Pawnee: Parks and Rec Dept.</h3>
+        <div id = "wrap">
+            <div id = "container">
+                <h3 className = "unit">Pawnee: Parks and Rec Dept.</h3>
                 {/* paths needed for to */}
                 {/* <Link to="/api/newCustomer">
                 Add Customer
@@ -15,13 +15,13 @@ const Nav = (props) => {
             <Link to="/api/logout">
                 Logout
             </Link> */}
-                <a href="/">Add Customer</a>
+                <a href = "/">Add Customer</a>
                 
                 
             </div>
-            <div id="container">
-                <a href="/">Logout</a>
-                <SearchBar userInfo={userInfo} className="unit"/>
+            <div id = "container">
+                <a href = "/">Logout</a>
+                <SearchBar userInfo = {userInfo} className = "unit"/>
             </div>
         </div>
     );
