@@ -9,6 +9,22 @@ module.exports.createLogin = (request, response) => {
         .then((pirate) => response.status(200).json(pirate))
         .catch((err) => response.status(400).json(err));
 }
+module.exports.getAllUsers = (request, response) => {
+    LoginUser.find({})
+        .then((user) => {
+            console.log(user); 
+            response.json(user);
+        })
+        .catch((err) => {
+            console.log(err);
+            response.status(400).json(err);
+        })
+}
+module.exports.getUser = (request, response) => {
+    LoginUser.findOne({_id:request.params.id})
+        .then((user) => response.status(200).json(user))
+        .catch(err => response.status(400).json(err));
+}
 // module.exports.deleteLogin = (request, response) => {
 //     LoginUser.deleteOne({ _id: request.params.id }) 
 //         .then((deleteConfirmation) => response.status(200).json(deleteConfirmation))
