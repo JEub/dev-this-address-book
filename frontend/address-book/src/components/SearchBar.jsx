@@ -3,7 +3,7 @@ import { searchInputState,currentSearchTerm } from '../reactstates';
 const SearchBar = (props) => {
     const {userInfo} = props
     const [searchInput, setSearchInput] = useRecoilState(searchInputState);
-    const [currentSearchValue,setCurrentSearchValue] = useRecoilState(currentSearchTerm );
+    const [currentSearchValue, setCurrentSearchValue] = useRecoilState(currentSearchTerm );
     // connect to database for search results?
     const handleSubmit = (e) => {
         e.preventDefault();

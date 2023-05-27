@@ -18,7 +18,7 @@ const LandingPage = (props) => {
         setShowModal = {setShowModal}/>
       <button onClick = {() => {setShowModal(true)}}>Open</button>
     </>
-  );
+  ); 
 };
 
 export default LandingPage;
