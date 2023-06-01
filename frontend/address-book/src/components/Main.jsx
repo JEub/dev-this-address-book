@@ -46,7 +46,7 @@ const Main = (props)=>{
                     {customerState.filter(customer => {
                         if (!currentSearchValue){
                             return customer;
-                        } else if (customer.Name.toLowerCase().includes(currentSearchValue.toLowerCase())) {
+                        } else if (customer.firstName.toLowerCase().includes(currentSearchValue.toLowerCase())) {
                             return customer;
                         }
                     }).map(customer => (

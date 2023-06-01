@@ -4,7 +4,7 @@ export const searchInputState = atom({
     key:"search",
     default:""
 })
-export const currentSearchTerm= atom({
+export const currentSearchTerm = atom({
     key:"now",
     default:""
 })
