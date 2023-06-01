@@ -1,23 +1,20 @@
-import "../styles/Nav.css";
-import SearchBar from "./SearchBar";
+import '../styles/Nav.css';
+import SearchBar from './SearchBar';
+// import {NavLink} from 'react-router-dom';
 
 const Nav = (props) => {
-    const { userInfo } = props;
+    const { userInfo, showModal, setShowModal } = props;
 
     return (
         <div id = "wrap">
             <div id = "container">
                 <h3 className = "unit">Pawnee: Parks and Rec Dept.</h3>
                 {/* paths needed for to */}
-                {/* <Link to="/api/newCustomer">
-                Add Customer
-            </Link>
-            <Link to="/api/logout">
+                {/* <NavLink to="/customers/createCustomer"></NavLink> */}
+            {/*<Link to="/api/logout">
                 Logout
             </Link> */}
-                <a href = "/">Add Customer</a>
-                
-                
+                <button onClick={()=>{setShowModal(true)}} id="button">Add Customer</button>
             </div>
             <div id = "container">
                 <a href = "/">Logout</a>
