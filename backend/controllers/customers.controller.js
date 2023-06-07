@@ -1,14 +1,28 @@
-const Customer = require('../models/customers.model');    
+const Customer = require('../models/customer.model');    
 module.exports.customerIndex = (request, response) => {
     response.json({
         message: "Hello Customers"
     });
 }
 module.exports.createCustomer = (request, response) => {
-    Customer.create(request.body) 
-        .then((customer) => response.status(200).json(customer))
-        .catch((err) => response.status(400).json(err));
-}
+    const {userInfo} = request.body;
+    // const {customerInfo} = 
+    Customer.create(userInfo)
+        .then((customer) => {
+            if(response.status(200)){
+                console.log(customer);
+            }
+            // console.log(response.status(200).json(customer));
+            response.status(200).json(customer)
+            console.log("customer created");
+            }
+        )
+        .catch((err) => {
+            response.status(400).json(err);
+            console.log(request.data);
+        })
+};
+
 module.exports.getAllCustomers = (request, response) => {
     Customer.find({})
         .then((customer) => {

@@ -7,17 +7,19 @@ const Main = (props) => {
     const {userInfo, setUserInfo} = props
     {/* When displaying the state do we want to lift state through props or create an atom through recoil */}
     const currentState = useRecoilValue(currentSearchTerm);
-
+    
+// Do you need to add props to useEffect to have access to the setter "setUserInfo"
     useEffect(()=>{
-        axios.get("http://localhost:5173/api/customers/findAllCustomers")
-        .then((res)=>{
-            // console.log(res.data);
-            setUserInfo(res.data);
-            console.log(userInfo);
-        })
-        .catch((err)=>{
-            console.log(err);
-        })
+        axios.get("http://localhost:5173/api/customers/findCustomers/all")
+            .then((res)=>{
+                console.log(res.data);
+                // issue is here in using dot notation to call info from the res.
+                const allCustomers= res.data.userInfo;
+                setUserInfo(allCustomers);
+            })
+            .catch((err)=>{
+                console.log(err);
+            })
     }, [userInfo])
     return (
         <>

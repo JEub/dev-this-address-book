@@ -6,7 +6,7 @@ module.exports.index = (request, response) => {
 }
 module.exports.createLogin = (request, response) => {
     LoginUser.create(request.body) 
-        .then((pirate) => response.status(200).json(pirate))
+        .then((user) => response.status(200).json(user))
         .catch((err) => response.status(400).json(err));
 }
 module.exports.getAllUsers = (request, response) => {
