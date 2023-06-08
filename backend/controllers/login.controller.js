@@ -9,6 +9,7 @@ module.exports.createLogin = (request, response) => {
         .then((user) => {
             response.status(201).json(user)
             console.log("login created" + user);
+            // brcyot password here
         })
         .catch((err) => {
             console.log(err);

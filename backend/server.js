@@ -1,8 +1,14 @@
 const express = require("express");
 const cors = require('cors');
-const app = express();
+require('dotenv').config();
 
-// config nodemon to run with vite hot reloads?
+const jwt = require('jsonwebtoken');
+const payload = {
+    id: user._id
+};
+const userToken = jwt.sign(payload, process.env.FIRST_SECRET_KEY);
+
+const app = express();
 
 app.use(cors());
 // this recognizes the incomming request as a json object
