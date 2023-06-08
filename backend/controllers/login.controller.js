@@ -6,27 +6,37 @@ module.exports.index = (request, response) => {
 }
 module.exports.createLogin = (request, response) => {
     LoginUser.create(request.body) 
-        .then((user) => response.status(200).json(user))
-        .catch((err) => response.status(400).json(err));
+        .then((user) => {
+            response.status(201).json(user)
+            console.log("login created" + user);
+        })
+        .catch((err) => {
+            console.log(err);
+            response.status(400).json(err);
+            console.log(request.data);
+        });
 }
 module.exports.getAllUsers = (request, response) => {
     LoginUser.find({})
         .then((user) => {
             console.log(user); 
-            response.json(user);
+            response.status(200).json(user);
         })
         .catch((err) => {
             console.log(err);
-            response.status(400).json(err);
+            response.status(404).json(err);
+            console.log(request.data);
         })
 }
 module.exports.getUser = (request, response) => {
     LoginUser.findOne({_id:request.params.id})
-        .then((user) => response.status(200).json(user))
-        .catch(err => response.status(400).json(err));
+        .then((user) => {
+            response.status(200).json(user);
+            console.log(user);
+        })
+        .catch((err) => {
+            console.log(err);
+            response.status(404).json(err)
+            console.log(request.data);
+        });
 }
-// module.exports.deleteLogin = (request, response) => {
-//     LoginUser.deleteOne({ _id: request.params.id }) 
-//         .then((deleteConfirmation) => response.status(200).json(deleteConfirmation))
-//         .catch(err => response.status(400).json(err))
-// }

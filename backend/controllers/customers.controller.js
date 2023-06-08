@@ -9,15 +9,14 @@ module.exports.createCustomer = (request, response) => {
     // const {customerInfo} = 
     Customer.create(userInfo)
         .then((customer) => {
-            if(response.status(200)){
-                console.log(customer);
-            }
-            // console.log(response.status(200).json(customer));
-            response.status(200).json(customer)
-            console.log("customer created");
+            response.status(201).json(customer)
+            if(response.status(201)){
+                console.log("customer created" + customer);
+            };
             }
         )
         .catch((err) => {
+            console.log(err);
             response.status(400).json(err);
             console.log(request.data);
         })
@@ -25,27 +24,50 @@ module.exports.createCustomer = (request, response) => {
 
 module.exports.getAllCustomers = (request, response) => {
     Customer.find({})
-        .then((customer) => {
-            console.log(customer); 
-            response.json(customer);
+        .then((customers) => {
+            response.status(200).json(customers);
+            console.log(customers); 
         })
         .catch((err) => {
             console.log(err);
-            response.status(400).json(err);
+            response.status(404).json(err);
+            console.log(request.data);
         })
 }
 module.exports.getCustomer = (request, response) => {
     Customer.findOne({_id:request.params.id})
-        .then((customer) => response.status(200).json(customer))
-        .catch(err => response.status(400).json(err));
+        .then((customer) => {
+            response.status(200).json(customer);
+            console.log(customer);
+            // response.json(customer);
+        })
+        .catch((err) => {
+            console.log(err);
+            response.status(404).json(err)
+            console.log(request.data);
+        });
 }
 module.exports.updateCustomer = (request, response) => {
     Customer.findOneAndUpdate({_id: request.params.id}, request.body, {new:true})
-        .then((updated) => response.status(200).json(updated))
-        .catch(err => response.status(400).json(err))
+        .then((updated) => {
+            response.status(204).json(updated)
+            console.log("Update Success" + updated);
+        })
+        .catch((err) => {
+            console.log(err);
+            response.status(404).json(err)
+            console.log(request.data);
+        })
 }
 module.exports.deleteCustomer = (request, response) => {
     Customer.deleteOne({ _id: request.params.id }) 
-        .then((deleteConfirmation) => response.status(200).json(deleteConfirmation))
-        .catch(err => response.status(400).json(err))
+        .then((deleteConfirmation) => {
+            response.status(204).json(deleteConfirmation)
+            console.log("Delete Success");
+        })
+        .catch((err) => {
+            console.log(err);
+            response.status(404).json(err)
+            console.log(request.data);
+        })
 }
