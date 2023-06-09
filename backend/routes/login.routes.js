@@ -5,5 +5,7 @@ module.exports = (app) => {
     // find all
     app.get("/api/login/findUsers/all", LoginController.getAllUsers);
     // create 
-    app.post("/api/login/createUser", LoginController.createCustomer);
+    app.post("/api/login/registerUser", LoginController.registerUser);
+    app.post("/api/login/loginUser", LoginController.loginUser);
+
 }
