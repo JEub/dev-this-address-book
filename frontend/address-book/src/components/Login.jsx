@@ -22,7 +22,6 @@ const UserLogin =({showLogin, setShowLogin}) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(loggedInUser, password);
         setShowLogin((current) => !current);
     }
 
@@ -41,7 +40,7 @@ const UserLogin =({showLogin, setShowLogin}) => {
             <form action="submit" onSubmit={handleSubmit}>
                 <label htmlFor="username" className="sr-only">Username</label>
                 <input type="text" name="username" id="username" placeholder="Username" value={currentUser.username} onChange={(e) => {setLoggedInUser(e.target.value)}} required/>
-                <label htmlFor="password" className="sr-only"></label>
+                <label htmlFor="password" className="sr-only">Password</label>
                 <input type="password" name="password" id="password" placeholder="Password" value={currentPassword.password} onChange={(e) => {setPassword(e.target.value)}} required/>
                 <button className="submitButton">Submit</button>
             </form>
