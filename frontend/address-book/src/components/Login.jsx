@@ -28,10 +28,16 @@ const UserLogin = ({ showLogin, setShowLogin }) => {
   }
 
   return (
-    <div className="login" onClick={() => setShowLogin(false)}>
+    <div
+      className="login"
+      role="alertdialog"
+      aria-modal={true}
+      aria-labelledby="login_label"
+      onClick={() => setShowLogin(false)}
+    >
       <div className="loginContent" onClick={(e) => e.stopPropagation()}>
         <div className="loginHeader">
-          <h1>User Login</h1>
+          <h1 id="login_label">User Login</h1>
         </div>
         <form action="submit" onSubmit={handleSubmit}>
           <label htmlFor="username" className="sr-only">
