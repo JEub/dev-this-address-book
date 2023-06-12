@@ -1,8 +1,10 @@
 import { useState } from "react";
+import axios from 'axios';
 
 import '../styles/UserModal.css';
 
 const UserModal = ({showModal, setShowModal}) => {
+    const [errors,setErrors] = useState([])
 
     const [userInfo, setUserInfo] = useState({
         firstName: "",
@@ -20,6 +22,28 @@ const UserModal = ({showModal, setShowModal}) => {
         })
     }
 
+    // User Modal needs a submit handler to handle post and put routes on form submission
+    const onSubmitHandler = (e)=> {
+        e.preventDefault();
+        axios.post(`http://localhost:5173/api/customers/createCustomer`, {userInfo})
+            .then(res =>{
+                console.log(userInfo);
+                setUserInfo({
+                    firstName: "",
+                    lastName: "",
+                    street1: "",
+                    street2: "",
+                    city: "",
+                    state: ""
+                });
+                setShowModal(false);
+            })
+            .catch(err => {
+                console.log({msg:'Posting Error',err:err});
+                console.log(err.request);
+            })
+    }
+
     if (!showModal) {
         return (
             null
@@ -33,9 +57,13 @@ const UserModal = ({showModal, setShowModal}) => {
                     <h3>Form!</h3>
                     <button onClick={() => {setShowModal(false)}}>Close</button>
                 </div>
-                <form action="submit">
+                <form onSubmit={onSubmitHandler}>
                     <label htmlFor="firstName" className="sr-only">First Name</label>
                     <input type="text" name="firstName" id="firstName" placeholder="First Name" value={userInfo.firstName} onChange={handleChange} required/>
+                    {errors.firstName ?
+                    <p >{errors.firstName.message}</p>
+                    :null
+                    }
 
                     <label htmlFor="lastName" className="sr-only">Last Name</label>
                     <input type="text" name="lastName" id="lastName" placeholder="Last Name" value={userInfo.lastName} onChange={handleChange} required/>

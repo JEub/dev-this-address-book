@@ -5,29 +5,27 @@ import UserModal from "../components/UserModal";
 import UserLogin from "../components/Login";
 
 const LandingPage = (props) => {
-    const {userInfo} = props;
-    const [loginState] = useState({
-      username:"",
-      password:""
-    })
+    const {userInfo, setUserInfo} = props;
     const [showModal, setShowModal] = useState(false);
     const [showLogin, setShowLogin] = useState(true);
 
   return (
     <>
-      <div>Landing Page</div>
-      <Nav userInfo={userInfo}/>
+      <div>LandingPage</div>
+      <Nav userInfo={userInfo} showModal = {showModal}
+        setShowModal = {setShowModal}/>
       {/* import atom into main container to read */}
-      <Main loginState={loginState}/>
-      <UserLogin
-        showLogin={showLogin}
-        setShowLogin={setShowLogin}/>
+      <Main 
+        userInfo = {userInfo} 
+        setUserInfo = {setUserInfo}/>
       <UserModal 
-        showModal={showModal}
-        setShowModal={setShowModal}/>
-      <button onClick={() => {setShowModal(true)}}>Open</button>
+        showModal = {showModal}
+        setShowModal = {setShowModal}
+        userInfo = {userInfo}
+        setUserInfo = {setUserInfo}/>
+      <button onClick = {() => {setShowModal(true)}}>Open</button>
     </>
-  );
+  ); 
 };
 
 export default LandingPage;
