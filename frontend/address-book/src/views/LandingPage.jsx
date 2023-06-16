@@ -1,9 +1,9 @@
-import { useState } from "react";
-import Nav from "../components/Nav";
-import Main from "../components/Main";
+import { useState } from 'react';
+import Nav from '../components/Nav';
+import Main from '../components/Main';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import UserModal from "../components/UserModal";
-import UserLogin from "../components/Login";
+import UserModal from '../components/UserModal';
+import UserLogin from '../components/UserLogin';
 import { currentModalState, currentModalData } from '../reactstates';
 
 const LandingPage = () => {
@@ -12,17 +12,11 @@ const LandingPage = () => {
 
   return (
     <>
-      <div>LandingPage</div>
-      <UserLogin showLogin={showLogin} setShowLogin={setShowLogin} />
-      <Nav
-        showModal={showModal}
-        setShowModal={setShowModal}
-      />
+      <Nav showModal={showModal} setShowModal={setShowModal} />
+      {/* <UserLogin showLogin={showLogin} setShowLogin={setShowLogin} /> */}
       {/* import atom into main container to read */}
       <Main />
-      <UserModal
-        showModal={showModal}
-        setShowModal={setShowModal} />
+      <UserModal showModal={showModal} setShowModal={setShowModal} />
     </>
   );
 };

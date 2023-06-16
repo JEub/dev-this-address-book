@@ -1,4 +1,4 @@
-const express = require("express");
+const express = require('express');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const jwt = require('jsonwebtoken');
@@ -22,5 +22,5 @@ require('./routes/customers.routes')(app);
 // setting the port to listen to requests to match the front end port 
 const port = process.env.PORT || 5172;
 app.listen(port, () => {
-    console.log(`Listen on the port ${port}...`);
+	console.log(`Listen on the port ${port}...`);
 });

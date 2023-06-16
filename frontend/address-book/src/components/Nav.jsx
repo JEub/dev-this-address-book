@@ -10,11 +10,13 @@ const Nav = (props) => {
     const [modalEditableState, setModalEditableState] = useRecoilState(currentModalEditState);
     const [userInfo,setUserInfo] = useRecoilState(currentModalData);
 
-    return (
-        <div id = "wrap">
-            <div id = "container">
-                <h3 className = "unit">Pawnee: Parks and Rec Dept.</h3>
-                <button onClick={()=>{
+  return (
+    <nav>
+      <div className="container">
+        <h1>Pawnee: Parks and Rec Dept.</h1>
+        <button
+          onClick={() => {
+            
                     setModalEditableState(false);
                     setUserInfo({
                         firstName: "",
@@ -25,14 +27,19 @@ const Nav = (props) => {
                         state: ""
                     })
                     setShowModal(true)
-                    }} id="button">Add Customer</button>
-            </div>
-            <div id = "container">
-                <a href = "/">Logout</a>
-                <SearchBar userInfo = {userInfo} className = "unit"/>
-            </div>
-        </div>
-    );
+                    ;
+          }}
+          className="button"
+        >
+          Add Customer
+        </button>
+      </div>
+      <div className="container">
+        <a href="/">Logout</a>
+        <SearchBar userInfo={userInfo} className="unit" />
+      </div>
+    </nav>
+  );
 };
 
 export default Nav;
