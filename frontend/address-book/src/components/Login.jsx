@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useRecoilState, useSetRecoilState } from 'recoil';
-import { currentUser, currentPassword } from '../states';
+import { currentUser, currentPassword } from '../reactstates';
 import '../styles/Login.css';
 
 

@@ -1,29 +1,27 @@
 import { useState } from "react";
 import Nav from "../components/Nav";
 import Main from "../components/Main";
+import {useRecoilState, useRecoilValue} from 'recoil';
 import UserModal from "../components/UserModal";
 import UserLogin from "../components/Login";
+import { currentModalState, currentModalData } from '../reactstates';
 
-const LandingPage = (props) => {
-    const {userInfo, setUserInfo} = props;
-    const [showModal, setShowModal] = useState(false);
+const LandingPage = () => {
+    const [showModal, setShowModal] = useRecoilState(currentModalState);
     const [showLogin, setShowLogin] = useState(true);
 
   return (
     <>
       <div>LandingPage</div>
-      <Nav userInfo={userInfo} showModal = {showModal}
-        setShowModal = {setShowModal}/>
-      {/* import atom into main container to read */}
-      <Main 
-        userInfo = {userInfo} 
-        setUserInfo = {setUserInfo}/>
-      <UserModal 
+      <Nav 
         showModal = {showModal}
         setShowModal = {setShowModal}
-        userInfo = {userInfo}
-        setUserInfo = {setUserInfo}/>
-      <button onClick = {() => {setShowModal(true)}}>Open</button>
+        />
+      {/* import atom into main container to read */}
+      <Main />
+      <UserModal 
+        showModal = {showModal}
+        setShowModal = {setShowModal}/>
     </>
   ); 
 };

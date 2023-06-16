@@ -1,29 +1,28 @@
-import {currentSearchTerm} from "../reactstates";
-import {useRecoilValue} from "recoil";
-import {useEffect} from 'react';
+import { currentModalData, currentModalState, currentModalEditState, currentSearchTerm } from "../reactstates";
+import { useRecoilValue, useRecoilState } from "recoil";
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const Main = (props) => {
-    const {userInfo, setUserInfo} = props
-    {/* When displaying the state do we want to lift state through props or create an atom through recoil */}
-    const currentState = useRecoilValue(currentSearchTerm);
-    
-// Do you need to add props to useEffect to have access to the setter "setUserInfo"
-    useEffect(()=>{
-        axios.get("http://localhost:5173/api/customers/findCustomers/all")
-            .then((res)=>{
-                console.log(res.data);
-                // issue is here in using dot notation to call info from the res.
-                const allCustomers= res.data.userInfo;
-                setUserInfo(allCustomers);
+const Main = () => {
+    const [userInfo, setUserInfo] = useState();
+    const [modalContent, setModalContent] = useRecoilState(currentModalData);
+    const [modalState, setModalState] = useRecoilState(currentModalState);
+    const [modalEditableState, setModalEditableState] = useRecoilState(currentModalEditState);
+    const currentSearchValue = useRecoilValue(currentSearchTerm);
+
+
+
+    useEffect(() => {
+        axios.get("http://localhost:5172/api/customers/findCustomers/all")
+            .then(res => {
+                setUserInfo(res.data)
             })
-            .catch((err)=>{
+            .catch((err) => {
                 console.log(err);
             })
     }, [userInfo])
     return (
         <>
-            <p>The current search is: {currentState}</p>
             <table>
                 <thead>
                     <tr>
@@ -36,20 +35,48 @@ const Main = (props) => {
                     </tr>
                 </thead>
                 {userInfo ? (
-                    userInfo.map((userInfo, index) => (
                     <tbody>
-                        <tr key={index}>
-                            <td>{userInfo.firstName}</td>
-                            <td>{userInfo.lastName}</td>
-                            <td>{userInfo.street1}</td>
-                            <td>{userInfo.street2}</td>
-                            <td>{userInfo.city}</td>
-                            <td>{userInfo.state}</td>
+                        {userInfo.filter(user => {
+                            if (!currentSearchValue) {
+                                return user
+                            } else if (user.firstName.toLowerCase().includes(currentSearchValue.toLowerCase()) ||
+                                user.lastName.toLowerCase().includes(currentSearchValue.toLowerCase()) ||
+                                user.street1.toLowerCase().includes(currentSearchValue.toLowerCase()) ||
+                                user.street2.toLowerCase().includes(currentSearchValue.toLowerCase()) ||
+                                user.city.toLowerCase().includes(currentSearchValue.toLowerCase()) ||
+                                user.state.toLowerCase().includes(currentSearchValue.toLowerCase())) {
+                                return user
+                            }
+                        }).map(user => {
+                            return (
+                                <tr key={user._id}>
+                                    <td>{user.firstName}</td>
+                                    <td>{user.lastName}</td>
+                                    <td>{user.street1}</td>
+                                    <td>{user.street2 ? user.street2 : null}</td>
+                                    <td>{user.city}</td>
+                                    <td>{user.state}</td>
+                                    <td><button onClick={() => {
+                                        setModalContent(user)
+                                        setModalEditableState(true)
+                                        setModalState(true)
+                                    }}>View Customer</button></td>
+                                    <td><button onClick={() => {
+                                        setModalContent(user)
+                                        setModalEditableState(false)
+                                        setModalState(true)
+                                    }}>Edit Customer</button></td>
+                                </tr>
+                            )
+                        })}
+                    </tbody>
+                ) : (
+                    <tbody>
+                        <tr>
+                            <td>There is nothing to display</td>
                         </tr>
-                    </tbody>)))
-                    :null
-                }
-                
+                    </tbody>
+                )}
             </table>
         </>
     );
