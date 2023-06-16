@@ -19,7 +19,6 @@ const CustomerSchema = new mongoose.Schema({
     street2: { 
         type: String,
         required:[false,'Street 2 error!'],
-        minLength:[3,"Error: street 2 name must be longer than three letters."]
     },
     city: { 
         type: String,

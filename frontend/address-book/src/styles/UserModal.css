@@ -56,3 +56,12 @@ select {
   background-color: var(--color-lime);
   color: var(--color-black);
 }
+
+.modalButtonDisabled {
+  padding: 10px 20px;
+  border-radius: 50px;
+  background-color: var(--color-black);
+  color: var(--color-lime);
+  opacity: 0.6;
+  cursor: not-allowed;
+}

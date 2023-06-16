@@ -1,7 +1,7 @@
 // requiring mongoose to bridge a connection from backend to MongoDB
 const mongoose = require('mongoose');
 // Mongoose requires a MongoDB connection. Connection string comes form MongoDB GUI Compass.
-mongoose.connect("mongodb+srv://Eric_Trudell:okndyzeRiMIblMA0@cluster0.ha2bmiq.mongodb.net/", { 
+mongoose.connect(process.env.MONGODB_URI, { 
     // default recommended options for Mongoose connection
     useNewUrlParser: true, 
     useUnifiedTopology: true,

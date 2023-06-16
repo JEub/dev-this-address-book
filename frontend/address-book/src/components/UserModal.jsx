@@ -1,53 +1,92 @@
 import { useState } from "react";
-import axios from "axios";
+import {useRecoilState, useSetRecoilState} from 'recoil'
+import { currentModalEditState, currentModalData } from "../reactstates";
 import usStatesData from "../modalData/usStateData.json";
-import "../styles/UserModal.css";
+import axios from 'axios';
 
-const UserModal = ({ showModal, setShowModal }) => {
-  const [errors, setErrors] = useState([]);
-  const [userInfo, setUserInfo] = useState({
-    firstName: "",
-    lastName: "",
-    street1: "",
-    street2: "",
-    city: "",
-    state: "",
-  });
+import '../styles/UserModal.css';
 
-  const handleChange = (e) => {
-    setUserInfo({
-      ...userInfo,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  // User Modal needs a submit handler to handle post and put routes on form submission
-  const onSubmitHandler = (e) => {
-    e.preventDefault();
-    axios
-      .post(`http://localhost:5173/api/customers/createCustomer`, { userInfo })
-      .then((res) => {
+const UserModal = ({showModal, setShowModal}) => {
+    const [errors,setErrors] = useState([])
+    const [modalEditableState, setModalEditableState] = useRecoilState(currentModalEditState);
+    const [userInfo, setUserInfo] = useRecoilState(currentModalData);
+    
+    const handleChange = (e) => {
         setUserInfo({
-          firstName: "",
-          lastName: "",
-          street1: "",
-          street2: "",
-          city: "",
-          state: "",
-        });
-        setShowModal(false);
-      })
-      .catch((err) => {
-        // Should this catch block be setting the error into state with setErrors? Currently receiving a warning that
-        // setErrors is declared but never used in this component
-        console.log({ msg: "Posting Error", err: err });
-        console.log(err.request);
-      });
-  };
+            ...userInfo,
+            [e.target.name]: e.target.value
+        })
+    }
+    const deleteUser = () => {
+        axios.delete(`http://localhost:5172/api/customers/deleteCustomer/${userInfo._id}`)
+        .then(() => {
+            console.log({msg:`User ${userInfo.firstName} has been deleted`})
+            setUserInfo({
+                firstName: "",
+                lastName: "",
+                street1: "",
+                street2: "",
+                city: "",
+                state: ""
+            });
+            setShowModal(false);
+        })
+        .catch(err => {
+            console.log({msg:`Error deleting User ${userInfo.firstName} ${userInfo.lastName}`, err: err})
+        })
+    }
+    // User Modal needs a submit handler to handle post and put routes on form submission
+    const onSubmitHandler = (e)=> {
+        e.preventDefault();
+        if(!userInfo._id)
+        {
+            axios.post(`http://localhost:5172/api/customers/createCustomer`, {userInfo})
+                .then(() => {
+                    setUserInfo({
+                        firstName: "",
+                        lastName: "",
+                        street1: "",
+                        street2: "",
+                        city: "",
+                        state: ""
+                    });
+                    setShowModal(false);
+                })
+                .catch(err => {
+                    console.log({msg:'Posting Error',err:err});
+                    console.log(err.request);
+                })
+        } else {
+            axios.get(`http://localhost:5172/api/customers/findCustomer/${userInfo._id}`)
+            .then(() => {
+                axios.put(`http://localhost:5172/api/customers/editCustomer/${userInfo._id}`, {userInfo})
+                .then(res => {
+                    console.log({msg: "User Updated"});
+                    setUserInfo({
+                        firstName: "",
+                        lastName: "",
+                        street1: "",
+                        street2: "",
+                        city: "",
+                        state: ""
+                    });
+                    setShowModal(false);
+                })
+                .catch(err => {
+                    console.log({msg: "Error Updating User", err: err});
+                })
+            })
+            .catch(err => {
+                console.log({msg: "Error Updating User", err: err});
+            })
+        }
+    }
 
-  if (!showModal) {
-    return null;
-  }
+    if (!showModal) {
+        return (
+            null
+        )
+    }
 
   return (
     <div
@@ -63,6 +102,7 @@ const UserModal = ({ showModal, setShowModal }) => {
           <button
             onClick={() => {
               setShowModal(false);
+              setModalEditableState(true);
             }}
             className="modalButton"
           >
@@ -80,6 +120,7 @@ const UserModal = ({ showModal, setShowModal }) => {
             placeholder="First Name"
             value={userInfo.firstName}
             onChange={handleChange}
+            disabled={modalEditableState}
             required
           />
           {errors.firstName ? <p>{errors.firstName.message}</p> : null}
@@ -94,6 +135,7 @@ const UserModal = ({ showModal, setShowModal }) => {
             placeholder="Last Name"
             value={userInfo.lastName}
             onChange={handleChange}
+            disabled={modalEditableState}
             required
           />
 
@@ -107,6 +149,7 @@ const UserModal = ({ showModal, setShowModal }) => {
             placeholder="Street Address"
             value={userInfo.street1}
             onChange={handleChange}
+            disabled={modalEditableState}
             required
           />
 
@@ -120,6 +163,7 @@ const UserModal = ({ showModal, setShowModal }) => {
             placeholder="Street Address 2"
             value={userInfo.street2}
             onChange={handleChange}
+            disabled={modalEditableState}
           />
 
           <label htmlFor="city" className="sr-only">
@@ -132,6 +176,7 @@ const UserModal = ({ showModal, setShowModal }) => {
             placeholder="City"
             value={userInfo.city}
             onChange={handleChange}
+            disabled={modalEditableState}
             required
           />
 
@@ -143,6 +188,7 @@ const UserModal = ({ showModal, setShowModal }) => {
             id="state"
             value={userInfo.state}
             onChange={handleChange}
+            disabled={modalEditableState}
             required
           >
             <option value="" disabled>
@@ -156,12 +202,14 @@ const UserModal = ({ showModal, setShowModal }) => {
               );
             })}
           </select>
-
-          <button className="modalButton">Edit/Submit</button>
+          {userInfo._id ? (
+                        <button className={`${modalEditableState ? "modalButtonDisabled" : "modalButton"} `} onClick={deleteUser} disabled={modalEditableState}>Delete</button>
+                    ):null}
+          <button className={`${modalEditableState ? "modalButtonDisabled" : "modalButton"} `} disabled={modalEditableState}>Edit/Submit</button>
         </form>
       </div>
     </div>
   );
-};
+}
 
 export default UserModal;
