@@ -11,11 +11,12 @@
 }
 
 .loginContent {
-	width: 40%;
+	width: 90%;
 	background-color: white;
 	display: flex;
 	flex-direction: column;
-	padding: 20px 0;
+	gap: 20px;
+	padding: 50px 0;
 	align-items: center;
 }
 
@@ -31,14 +32,24 @@
 	justify-content: center;
 	align-items: center;
 	flex-wrap: wrap;
-	gap: 10px;
+	gap: 20px;
 	width: 100%;
 }
 
 .loginContent input {
-	width: 60%;
+	width: 90%;
 }
 
-.loginContent .modalButton {
-	margin-top: 25px;
+@media (min-width: 768px) {
+	.loginContent {
+		padding: 20px;
+		width: 70%;
+		gap: 0;
+	}
+}
+
+@media (min-width: 1024px) {
+	.loginContent {
+		width: 50%;
+	}
 }

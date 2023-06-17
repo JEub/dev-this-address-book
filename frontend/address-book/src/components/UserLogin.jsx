@@ -7,17 +7,6 @@ const UserLogin = ({ showLogin, setShowLogin }) => {
 	const [loggedInUser, setLoggedInUser] = useRecoilState(currentUser);
 	const [password, setPassword] = useRecoilState(currentPassword);
 
-	// const handleChange = (e) => {
-	//     setLoggedInUser({
-	//         ...currentUser,
-	//         [e.target.name]: e.target.value
-	//     })
-	//     setPassword({
-	//         ...currentPassword,
-	//         [e.target.name]: e.target.value
-	//     })
-	// }
-
 	const handleSubmit = e => {
 		e.preventDefault();
 		setShowLogin(current => !current);

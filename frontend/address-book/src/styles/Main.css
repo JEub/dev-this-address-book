@@ -1,8 +1,55 @@
 h2 {
-  text-align: center;
-  margin: 20px 0;
+	text-align: center;
+	margin: 10px 0;
 }
 
 table {
-  width: 100%;
+	width: 100%;
+	margin: 30px 0;
+}
+
+th {
+	text-transform: uppercase;
+	padding: 10px;
+}
+
+th,
+td {
+	vertical-align: top;
+	padding: 5px;
+}
+
+tbody {
+	text-align: center;
+}
+
+.overflow {
+	overflow-y: auto;
+}
+
+.actions {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+}
+.tableButton {
+	width: 75px;
+	padding: 15px;
+	background-color: var(--color-lime);
+	border-radius: 2px;
+	color: var(--color-black);
+	transition: all 0.3s;
+}
+
+.tableButton:is(:hover, :focus),
+#searchb:is(:hover, :focus) {
+	background-color: var(--color-grey);
+}
+
+@media (min-width: 768px) {
+	th,
+	td {
+		vertical-align: center;
+	}
 }
