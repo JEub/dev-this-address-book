@@ -36,7 +36,7 @@ const Nav = (props) => {
       </div>
       <div className="container">
         <a href="/">Logout</a>
-        <SearchBar userInfo={userInfo} className="unit" />
+        <SearchBar className="unit" />
       </div>
     </nav>
   );
