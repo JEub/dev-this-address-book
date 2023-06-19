@@ -1,67 +1,123 @@
 /* Nav component styling */
 nav {
-  background-color: var(--color-black);
-  padding: 10px;
-  color: var(--color-lime);
+	background-color: var(--color-black);
+	padding: 10px;
+	color: var(--color-lime);
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
 }
 
 h1 {
-  font-size: 2.5rem;
+	font-size: 2rem;
+	margin: 0;
+	text-align: center;
 }
 
 a {
-  color: var(--color-lime);
-  font-size: 1.5rem;
-  transition: all 0.3s;
+	color: var(--color-lime);
+	font-size: 1.5rem;
+	transition: all 0.3s;
+	display: block;
 }
 
 a:is(:hover, :focus) {
-  color: var(--color-white);
+	color: var(--color-grey);
 }
 
 .container {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 5px;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	gap: 10px;
 }
 .unit {
-  width: 50%;
-  display: flex;
-  align-items: left;
-  margin-top: 10px;
+	width: 50%;
+	display: flex;
+	align-items: left;
+	margin-top: 10px;
 }
 .button {
-  padding: 15px;
-  background-color: var(--color-lime);
-  border: 3px solid var(--color-black);
-  border-radius: 50px;
-  color: var(--color-black);
-  transition: all 0.3s;
+	padding: 15px;
+	background-color: var(--color-lime);
+	border-radius: 50px;
+	color: var(--color-black);
+	transition: all 0.3s;
 }
 
 .button:is(:hover, :focus),
 #searchb:is(:hover, :focus) {
-  background-color: var(--color-white);
+	background-color: var(--color-grey);
+}
+
+#addButton {
+	width: 100%;
 }
 /* SearchBar Component Styling */
 .searchForm {
-  flex-grow: 0.3;
-  display: flex;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 10px;
 }
 
 #sinput {
-  padding: 10px;
-  color: var(--color-black);
+	width: 100%;
+	padding: 10px;
+	color: var(--color-black);
 }
 #searchb {
-  margin: 0 10px;
-  padding: 10px 20px;
-  background-color: var(--color-lime);
-  border-radius: 50px;
-  color: var(--color-black);
-  transition: all 0.3s;
+	margin: 0 10px;
+	padding: 10px 20px;
+	width: 100%;
+	background-color: var(--color-lime);
+	border-radius: 50px;
+	color: var(--color-black);
+	transition: all 0.3s;
+}
+
+@media (min-width: 640px) {
+	#sinput,
+	#searchb,
+	#addButton {
+		width: 80%;
+	}
+}
+
+@media (min-width: 768px) {
+	h1 {
+		text-align: left;
+		font-size: 2.3rem;
+		margin: 20px 0;
+	}
+
+	#addButton {
+		width: auto;
+	}
+	.container {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	.searchForm {
+		flex-grow: 0.3;
+		width: 70%;
+		flex-direction: row;
+	}
+
+	#sinput,
+	#searchb {
+		width: auto;
+	}
+}
+
+@media (min-width: 1024px) {
+	.searchForm {
+		width: 40%;
+	}
 }

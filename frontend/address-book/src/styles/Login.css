@@ -4,18 +4,21 @@
 	top: 0;
 	right: 0;
 	bottom: 0;
-	background-color: rgba(0, 0, 0, 0.5);
+	background-color: var(--color-white);
 	display: flex;
 	align-items: center;
 	justify-content: center;
 }
 
 .loginContent {
-	width: 40%;
+	width: 90%;
 	background-color: white;
+	border: 1px solid var(--color-grey);
+	box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 	display: flex;
 	flex-direction: column;
-	padding: 20px 0;
+	gap: 20px;
+	padding: 50px 0;
 	align-items: center;
 }
 
@@ -31,14 +34,25 @@
 	justify-content: center;
 	align-items: center;
 	flex-wrap: wrap;
-	gap: 10px;
+	gap: 20px;
 	width: 100%;
 }
 
 .loginContent input {
-	width: 60%;
+	width: 90%;
 }
 
-.loginContent .modalButton {
-	margin-top: 25px;
+@media (min-width: 768px) {
+	.loginContent {
+		padding: 20px;
+		width: 70%;
+		gap: 0;
+	}
+}
+
+@media (min-width: 1024px) {
+	.loginContent {
+		padding: 50px;
+		width: 50%;
+	}
 }
