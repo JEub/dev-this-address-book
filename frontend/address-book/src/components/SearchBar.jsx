@@ -1,8 +1,8 @@
 import { useRecoilState } from "recoil";
 import { searchInputState, currentSearchTerm } from "../reactstates";
-const SearchBar = ({ userInfo }) => {
+const SearchBar = () => {
   const [searchInput, setSearchInput] = useRecoilState(searchInputState);
-  const [setCurrentSearchValue] = useRecoilState(currentSearchTerm);
+  const [currentSearchValue, setCurrentSearchValue] = useRecoilState(currentSearchTerm);
   // connect to database for search results?
   const handleSubmit = (e) => {
     e.preventDefault();
