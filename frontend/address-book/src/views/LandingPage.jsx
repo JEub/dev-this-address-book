@@ -7,18 +7,17 @@ import UserLogin from '../components/UserLogin';
 import { currentModalState, currentModalData } from '../reactstates';
 
 const LandingPage = () => {
-  const [showModal, setShowModal] = useRecoilState(currentModalState);
-  const [showLogin, setShowLogin] = useState(true);
+	const [showModal, setShowModal] = useRecoilState(currentModalState);
+	const [showLogin, setShowLogin] = useState(true);
 
-  return (
-    <>
-      <Nav showModal={showModal} setShowModal={setShowModal} />
-      {/* <UserLogin showLogin={showLogin} setShowLogin={setShowLogin} /> */}
-      {/* import atom into main container to read */}
-      <Main />
-      <UserModal showModal={showModal} setShowModal={setShowModal} />
-    </>
-  );
+	return (
+		<>
+			<Nav showModal={showModal} setShowModal={setShowModal} />
+			<UserLogin showLogin={showLogin} setShowLogin={setShowLogin} />
+			<Main />
+			<UserModal showModal={showModal} setShowModal={setShowModal} />
+		</>
+	);
 };
 
 export default LandingPage;
